@@ -19,14 +19,11 @@
 namespace JMS\I18nRoutingBundle\Router;
 
 use JMS\I18nRoutingBundle\Exception\NotAcceptableLanguageException;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Matcher\RequestMatcherInterface;
-use Symfony\Component\Routing\RequestContext;
 
 /**
  * I18n Router implementation.
@@ -38,7 +35,7 @@ class I18nRouter extends Router
     private array $hostMap = array();
     private ?string $i18nLoaderId;
     private $container;
-    protected $defaultLocale;
+    protected ?string $defaultLocale = null;
     private bool $redirectToHost = true;
     private ?LocaleResolverInterface $localeResolver;
 
